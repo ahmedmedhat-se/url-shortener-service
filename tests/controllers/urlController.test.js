@@ -1,8 +1,14 @@
+import { jest } from '@jest/globals';
 import request from 'supertest';
-import app from '../../app.js';
-import * as urlService from '../../services/urlService.js';
 
-jest.mock('../../services/urlService.js');
+jest.unstable_mockModule('../../services/urlService.js', () => ({
+  createShortUrl: jest.fn(),
+  getOriginalUrl: jest.fn(),
+  getAnalytics: jest.fn(),
+}));
+
+const app = (await import('../../app.js')).default;
+const urlService = await import('../../services/urlService.js');
 
 describe('URL Controller', () => {
   beforeEach(() => {

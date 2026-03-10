@@ -88,7 +88,7 @@ async function redirect(req, res) {
       return res.status(404).json({ error: 'Short URL not found' });
     }
     
-    res.redirect(301, originalUrl);
+    res.redirect(302, originalUrl);
   } catch (error) {
     console.error('Error in redirect:', error);
     res.status(500).json({ error: 'Internal server error' });
@@ -108,10 +108,7 @@ async function analytics(req, res) {
       return res.status(404).json({ error: 'Short URL not found' });
     }
     
-    res.json({
-      shortCode,
-      ...stats
-    });
+    res.json(stats);
   } catch (error) {
     console.error('Error in analytics:', error);
     res.status(500).json({ error: 'Internal server error' });

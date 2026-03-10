@@ -1,7 +1,6 @@
-import { Url, Click } from '../../models/index.js';
-import * as urlService from '../../services/urlService.js';
+import { jest } from '@jest/globals';
 
-jest.mock('../../models/index.js', () => ({
+jest.unstable_mockModule('../../models/index.js', () => ({
   Url: {
     create: jest.fn(),
     findOne: jest.fn(),
@@ -10,6 +9,9 @@ jest.mock('../../models/index.js', () => ({
     create: jest.fn(),
   },
 }));
+
+const { Url, Click } = await import('../../models/index.js');
+const urlService = await import('../../services/urlService.js');
 
 describe('urlService', () => {
   beforeEach(() => {

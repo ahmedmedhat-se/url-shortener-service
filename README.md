@@ -94,6 +94,49 @@ npm start
 ```
 
 ---
+## 📚 API Reference
+1. **Create Short URL**:
+*Request*
+```bash
+POST /shorten
+Content-Type: application/json
+
+{
+  "originalUrl": "https://example.com/very/long/url"
+}
+```
+
+*Response*
+```bash
+{
+  "shortUrl": "http://localhost:PORT/abc123",
+  "shortCode": "abc123",
+  "originalUrl": "https://example.com/very/long/url"
+}
+```
+
+2. **Redirect to Original**:
+```bash
+GET /{shortCode}
+```
+
+3. **Get**:
+*Request*:
+```bash
+GET /analytics/{shortCode}
+```
+
+*Response*:
+```js
+{
+  "totalClicks": ,
+  "referrers": {
+      "direct": 
+  }
+}
+```
+
+---
 ## 📄 License
 **PROPRIETARY LICENSE**
 © 2026 - Ahmed Medhat. All Rights Reserved.

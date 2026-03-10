@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../config/database.js';
+import { sequelize } from '../config/database.js';
 
-const Url = sequelize.define('Url', {
+export const Url = sequelize.define('Url', {
   originalUrl: {
     type: DataTypes.TEXT,
     allowNull: false,
@@ -12,5 +12,3 @@ const Url = sequelize.define('Url', {
     unique: true,
   },
 });
-
-export default Url;

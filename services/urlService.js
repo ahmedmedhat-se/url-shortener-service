@@ -22,8 +22,12 @@ async function getOriginalUrl(shortCode, referrer = null) {
 async function getAnalytics(shortCode) {
   const url = await Url.findOne({
     where: { shortCode },
-    include: Click,
+    include: [{
+      model: Click,
+      as: 'Clicks'
+    }]
   });
+  
   if (!url) return null;
 
   const totalClicks = url.Clicks.length;
@@ -34,6 +38,6 @@ async function getAnalytics(shortCode) {
   }, {});
 
   return { totalClicks, referrers: referrerCounts };
-};
+}
 
 export { createShortUrl, getOriginalUrl, getAnalytics };
